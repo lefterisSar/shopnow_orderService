@@ -1,4 +1,4 @@
-package com.shopnow.order_service;
+package com.shopnow.orderservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
