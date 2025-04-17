@@ -18,7 +18,10 @@ public class OrderController {
 
     @PostMapping
     public Order placeOrder(@RequestBody OrderRequest request, Authentication auth) {
+        System.out.println("AUTH: " + auth.getName() + " ROLES: " + auth.getAuthorities());
+
         String email = auth.getName(); // comes from JWT
+
         return orderService.placeOrder(email, request.getTotal());
     }
 

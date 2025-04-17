@@ -26,18 +26,27 @@ public class JwtAuthFilter extends GenericFilter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String token = resolveToken(httpRequest);
 
+        if (token != null) {
+            System.out.println("🟡 JWT Detected: " + token);
+        }
+
         if (token != null && jwtTokenUtil.isValid(token)) {
             String email = jwtTokenUtil.getUsername(token);
             List<GrantedAuthority> authorities = jwtTokenUtil.getRoles(token).stream()
                     .map(SimpleGrantedAuthority::new)
                     .collect(Collectors.toList());
 
+            System.out.println("✅ JWT Authenticated: " + email + " | Roles: " + authorities);
+
             Authentication auth = new UsernamePasswordAuthenticationToken(email, null, authorities);
             SecurityContextHolder.getContext().setAuthentication(auth);
+        } else {
+            System.out.println("❌ Invalid or missing token");
         }
 
         chain.doFilter(request, response);
     }
+
 
     private String resolveToken(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
