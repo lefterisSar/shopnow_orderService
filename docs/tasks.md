@@ -13,7 +13,7 @@ This document contains a prioritized list of improvements for the ShopNow Order 
 
 ## Security
 
-- [ ] Move sensitive configuration to environment variables or a secure vault
+- [x] Move sensitive configuration to environment variables or a secure vault
 - [ ] Strengthen JWT secret and implement proper key rotation
 - [ ] Add token expiration validation in JwtTokenUtil
 - [ ] Replace System.out.println with proper logging in security components

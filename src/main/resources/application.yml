@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/shopnow_orders
-    username: postgres
-    password: S@ltyGuy!1
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/shopnow_orders}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
   jpa:
     hibernate:
       ddl-auto: none
@@ -12,11 +12,11 @@ spring:
   application:
     name: Order Service
 server:
-  port: 8083
+  port: ${SERVER_PORT:8083}
 
 jwt:
-  secret: shopnowsupersecretkey1234567890123456
-  expiration: 86400000
+  secret: ${JWT_SECRET:}
+  expiration: ${JWT_EXPIRATION:86400000}
 
 logging:
   level:
