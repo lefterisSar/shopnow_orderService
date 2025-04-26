@@ -4,12 +4,15 @@ import com.shopnow.orderservice.entity.Order;
 import com.shopnow.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
+
 public class OrderService {
 
     private final OrderRepository orderRepository;
@@ -20,7 +23,14 @@ public class OrderService {
                 .status("PENDING")
                 .total(total)
                 .build();
-        return orderRepository.save(order);
+        Order saved = orderRepository.save(order);
+        orderRepository.flush(); // Force Hibernate to flush to database
+        // 👇 NEW: fetch all orders after save
+        List<Order> orders = orderRepository.findAll();
+        System.out.println("✅ Orders in DB after save:");
+        orders.forEach(System.out::println);
+
+        return saved;
     }
 
     public List<Order> getOrdersForUser(String email) {

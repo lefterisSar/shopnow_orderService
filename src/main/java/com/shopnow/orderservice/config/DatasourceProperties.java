@@ -15,9 +15,9 @@ public class DatasourceProperties {
 
     @PostConstruct
     public void checkEnv() {
-        System.out.println("SPRING_DATASOURCE_PASSWORD (System): " + System.getProperty("SPRING_DATASOURCE_PASSWORD"));
-        System.out.println("SPRING_DATASOURCE_USERNAME (System): " + System.getProperty("SPRING_DATASOURCE_USERNAME"));
-        System.out.println("SPRING_DATASOURCE_URL (System): " + System.getProperty("SPRING_DATASOURCE_URL"));
+//        System.out.println("SPRING_DATASOURCE_PASSWORD (System): " + System.getProperty("SPRING_DATASOURCE_PASSWORD"));
+//        System.out.println("SPRING_DATASOURCE_USERNAME (System): " + System.getProperty("SPRING_DATASOURCE_USERNAME"));
+//        System.out.println("SPRING_DATASOURCE_URL (System): " + System.getProperty("SPRING_DATASOURCE_URL"));
     }
 
 }

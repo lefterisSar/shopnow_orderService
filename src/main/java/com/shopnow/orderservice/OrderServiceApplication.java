@@ -5,10 +5,12 @@ import com.shopnow.orderservice.config.JwtProperties;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @EnableConfigurationProperties({JwtProperties.class, DatasourceProperties.class})
 @SpringBootApplication
+@EntityScan(basePackages = "com.shopnow.orderservice.entity")
 public class OrderServiceApplication {
 
     public static void main(String[] args) {
