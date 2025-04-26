@@ -23,14 +23,7 @@ public class OrderService {
                 .status("PENDING")
                 .total(total)
                 .build();
-        Order saved = orderRepository.save(order);
-        orderRepository.flush(); // Force Hibernate to flush to database
-        // 👇 NEW: fetch all orders after save
-        List<Order> orders = orderRepository.findAll();
-        System.out.println("✅ Orders in DB after save:");
-        orders.forEach(System.out::println);
-
-        return saved;
+        return orderRepository.save(order);
     }
 
     public List<Order> getOrdersForUser(String email) {
