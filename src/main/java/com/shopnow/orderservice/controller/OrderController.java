@@ -19,10 +19,7 @@ public class OrderController {
 
     @PostMapping
     public Order placeOrder(@RequestBody OrderRequest request, Authentication auth) {
-        System.out.println("AUTH: " + auth.getName() + " ROLES: " + auth.getAuthorities());
-
-        String email = auth.getName(); // comes from JWT
-
+        String email = auth.getName();
         return orderService.placeOrder(email, request.getTotal());
     }
 
@@ -34,6 +31,6 @@ public class OrderController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin")
     public List<Order> getAllOrders() {
-        return orderService.getAllOrders(); // should be protected by role
+        return orderService.getAllOrders();
     }
 }
