@@ -4,6 +4,7 @@ import com.shopnow.orderservice.dto.OrderRequest;
 import com.shopnow.orderservice.entity.Order;
 import com.shopnow.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,7 @@ public class OrderController {
         return orderService.getOrdersForUser(auth.getName());
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin")
     public List<Order> getAllOrders() {
         return orderService.getAllOrders(); // should be protected by role
